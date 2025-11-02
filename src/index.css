@@ -77,6 +77,12 @@ body {
     font-size: 1.125rem; /* lg:text-lg */
   }
 }
+.auth-inputs{
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(204, 204, 204, 0.14);
+  padding: 0.375rem;
+}
 
 .auth-input {
   width: 100%;

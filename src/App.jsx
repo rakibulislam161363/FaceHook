@@ -1,28 +1,27 @@
-import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegistationPage from "./pages/RegistationPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import HomePage from "./pages/HomePage";
-import { Route, Routes } from "react-router-dom";
-import { AuthContext } from "./context/authContext";
-import { useState } from "react";
-import PrivetRoute from "./providers/Routs/PrivetRoute";
+import {Routes, Route} from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProfilePage from './pages/ProfilePage';
+import RegistrationPage from './pages/RegistrationPage';
+
+import PrivateRoutes from './routes/PrivateRoutes';
+
 function App() {
-  const [auth, setAuth] = useState({});
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <>
       <Routes>
-        <Route element= {<PrivetRoute />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/me" element={<ProfilePage />} />
+        <Route element={<PrivateRoutes />}>
+          <Route element={<HomePage />} path="/" exact />
+          <Route element={<ProfilePage />} path="/me" />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="registation" element={<RegistationPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route element={<LoginPage />} path="/login" />
+        <Route element={<RegistrationPage />} path="/register" />
+        <Route element={<NotFoundPage />} path="*" />
       </Routes>
-    </AuthContext.Provider>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App
